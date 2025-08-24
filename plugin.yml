@@ -1,0 +1,9 @@
+name: BackToDeath
+author: Biswajit
+version: 1.0.0
+main: Biswajit\Back\Main
+api: [5.0.0]
+
+permissions:
+  back.cmd.use:
+    default: op

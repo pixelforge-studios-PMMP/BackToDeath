@@ -1,0 +1,23 @@
+# BackToDeath Plugin Configuration
+# 
+# Cooldown settings
+cooldown:
+  # Cooldown time in seconds (default: 300 seconds = 5 minutes)
+  time: 300
+
+# Message settings
+messages:
+  # Message when command is used from console
+  console_only: "§cThis command can only be used in-game."
+  
+  # Message when player doesn't have permission
+  no_permission: "You Dont Have Permission To Use This Command."
+  
+  # Message when command is on cooldown
+  on_cooldown: "You must wait some more!"
+  
+  # Message when player hasn't died recently
+  no_death: "You haven't died recently!"
+  
+  # Message when teleportation is successful
+  success: "You have been successfully teleported to your last death point."
