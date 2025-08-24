@@ -86,9 +86,9 @@ Teleports you to your last death location.
 
 ## 🏎️ Performance
 
-The BackToDeath plugin utilizes a **high-performance SQLite caching system** for storing player death locations and cooldowns. This ensures:
-- **No Lag**: Efficient data retrieval and storage minimizes server load.
-- **Stable Performance**: Data persists across server restarts, providing a reliable experience for players.
+The BackToDeath plugin utilizes a **high-performance caching system** for storing player death locations and cooldowns. This ensures:
+- **No Lag**: Efficient data retrieval and storage and no server load.
+- **Stable Performance**: Data was remove on server restarts, providing a reliable experience for players.
 
 ## 📝 API Compatibility
 
