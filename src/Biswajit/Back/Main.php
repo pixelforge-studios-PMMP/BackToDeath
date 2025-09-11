@@ -5,7 +5,6 @@ namespace Biswajit\Back;
 use Biswajit\Back\Commands\BackCommand;
 use pocketmine\plugin\PluginBase;
 use Biswajit\Back\EventListener;
-use Biswajit\Back\Managers\CacheManager;
 
 class Main extends PluginBase {
 
@@ -19,7 +18,6 @@ class Main extends PluginBase {
         
         $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
         $this->getServer()->getCommandMap()->register("back", new BackCommand($this));
-        new CacheManager();
     }
 
     /**

@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Biswajit\Back;
 
-use Biswajit\Back\Managers\CacheManager;
+use Biswajit\Back\sessions\Session;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerDeathEvent;
+use pocketmine\event\player\PlayerQuitEvent;
 
 class EventListener implements Listener
 {
@@ -20,7 +21,15 @@ class EventListener implements Listener
             $y = $pos->getY();
             $z = $pos->getZ();
             $worldName = $pos->getWorld()->getFolderName();
-            CacheManager::getInstance()->back[$player->getName()] = $x . ":" . $y . ":" . $z . ":" . $worldName;
+            $session = new Session($player);
+            $session->data["back"] = $x . ":" . $y . ":" . $z . ":" . $worldName;
+            $session->saveData();
         }
+    }
+
+    public function onQuit(PlayerQuitEvent $event)
+    {
+        $player = $event->getPlayer();
+        Session::removeSession($player);
     }
 }

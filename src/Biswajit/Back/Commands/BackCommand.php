@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Biswajit\Back\Commands;
 
 use Biswajit\Back\Main;
-use Biswajit\Back\Managers\CacheManager;
+use Biswajit\Back\sessions\Session;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
@@ -30,22 +30,24 @@ class BackCommand extends Command
             return;
         }
 
+        $session  = new Session($sender);
+
         if(!$sender->hasPermission("back.cmd.use")) {
             $sender->sendMessage($config['messages']['no_permission']);
             return;
         }
 
-        if(isset(CacheManager::getInstance()->cooldown["back"][$sender->getName()]) && CacheManager::getInstance()->cooldown["back"][$sender->getName()] - time() > 0){
+        if(isset($session->data["cooldown"]) && $session->data["cooldown"] - time() > 0){
             $sender->sendMessage($config['messages']['on_cooldown']);
             return;
         }
 
-        if(!isset(CacheManager::getInstance()->back[$sender->getName()])){
+        if(!isset($session->data["back"])){
             $sender->sendMessage($config['messages']['no_death']);
             return;
         }
 
-        $pos = explode(":", CacheManager::getInstance()->back[$sender->getName()]);
+        $pos = explode(":", $session->data["back"]);
         $worldName = $pos[3];
         $worldMgr = Server::getInstance()->getWorldManager();
         if (!$worldMgr->isWorldLoaded($worldName)){
@@ -54,7 +56,8 @@ class BackCommand extends Command
         $pos = new Position((int)$pos[0], (int)$pos[1], (int)$pos[2], $worldMgr->getWorldByName($worldName));
         $sender->teleport($pos);
 
-        CacheManager::getInstance()->cooldown["back"][$sender->getName()] = time() + $config['cooldown']['time'];
+        $session->data["cooldown"] = time() + $config['cooldown']['time'];
+        $session->saveData();
 
         $sender->sendMessage($config['messages']['success']);
     }
