@@ -19,7 +19,7 @@ class BackCommand extends Command
 
     public function __construct(Main $plugin) {
         parent::__construct("back", "Teleport you to the last death position", "/back");
-        $this->setPermission("back.cmd.use");
+        $this->setPermission("backtodeath.cmd");
         $this->plugin = $plugin;
     }
    public function execute(CommandSender $sender, string $commandLabel, array $args): void {
