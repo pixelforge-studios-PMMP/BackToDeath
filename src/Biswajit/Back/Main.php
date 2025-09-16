@@ -17,7 +17,7 @@ class Main extends PluginBase {
         $this->config = $this->getConfig()->getAll();
         
         $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
-        $this->getServer()->getCommandMap()->register("back", new BackCommand($this));
+        $this->getServer()->getCommandMap()->register("BackToDeath", new BackCommand($this));
     }
 
     /**
