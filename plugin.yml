@@ -5,5 +5,5 @@ main: Biswajit\Back\Main
 api: [5.0.0]
 
 permissions:
-  back.cmd.use:
+  backtodeath.cmd:
     default: op
